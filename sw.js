@@ -1,9 +1,8 @@
 const CACHE_NAME = 'home-made-recipe-v1';
 const ASSETS = [
-  '/',
-  '/manifest.json',
-  '/y/index.html',
-  '/favicon.ico',
+  './',
+  './index.html',
+  './manifest.json',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
@@ -24,12 +23,18 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+
   event.respondWith(
-    caches.match(event.request).then((cached) => {
+    caches.match(event.request, { ignoreSearch: true }).then((cached) => {
       if (cached) return cached;
       return fetch(event.request).then((response) => {
+        if (response && response.status === 200) {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+        }
         return response;
-      }).catch(() => caches.match('/y/index.html'));
+      }).catch(() => caches.match('./index.html'));
     })
   );
 });

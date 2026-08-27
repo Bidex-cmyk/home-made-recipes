@@ -1,13 +1,15 @@
 {
   "name": "Home Made Recipe",
   "short_name": "HM Recipe",
-  "start_url": "/home-made-recipe/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#ff6b6b",
   "theme_color": "#ff6b6b",
-  "icons": [{
-    "src": "icon-192.png",
-    "sizes": "192x192",
-    "type": "image/png"
-  }]
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%23ff6b6b'/%3E%3Ctext x='96' y='108' text-anchor='middle' font-size='96' font-family='Arial' fill='white'%3E%F0%9F%8C%B3%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
 }

@@ -2552,7 +2552,7 @@
             </div>
             
             <!-- Popular Recipes Section -->
-            <h2 class="section-title" style="margin-top: 50px;">Popular Free Recipes</h2>
+            <h2 class="section-title" style="margin-top: 40px;">Popular Recipes</h2>
             <div class="recipes-grid">
                 <!-- Recipe 1 -->
                 <div class="recipe-card" data-recipe="avocado-toast">
@@ -3019,9 +3019,21 @@ const firebaseConfig = {
     appId: "YOUR_APP_ID"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const isDemoApiKey = (value) => {
+    return !value || typeof value !== 'string' || value.includes('YOUR_API_KEY') || value.trim() === '';
+};
+
+const demoMode = isDemoApiKey(firebaseConfig.apiKey);
+
+let app = null;
+let auth = null;
+let db = null;
+
+if (!demoMode) {
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+}
 
 const tabs = document.querySelectorAll('.tab');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -3052,12 +3064,7 @@ const livePage = document.getElementById('live-page');
 const messagesPage = document.getElementById('messages-page');
 const friendsPage = document.getElementById('friends-page');
 
-// Bottom nav items
-const navItems = document.querySelectorAll('.nav-item');
-
 let deferredInstallPrompt = null;
-
-const demoMode = firebaseConfig.apiKey.includes('YOUR_API_KEY');
 
 function initApp() {
     setupEventListeners();
@@ -3787,6 +3794,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 });
 
 initApp();
+registerServiceWorker();
 </script>
 </body>
 </html>
