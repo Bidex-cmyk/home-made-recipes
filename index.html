@@ -289,10 +289,12 @@
             border-radius: var(--radius);
             padding: 25px;
             box-shadow: var(--shadow);
+            border: 1px solid #f0f0f0;
         }
         
         .dark-mode .profile-sidebar {
             background: #2d2d2d;
+            border-color: #3d3d3d;
         }
         
         .profile-header {
@@ -398,10 +400,12 @@
             border-radius: var(--radius);
             padding: 25px;
             box-shadow: var(--shadow);
+            border: 1px solid #f0f0f0;
         }
         
         .dark-mode .profile-main {
             background: #2d2d2d;
+            border-color: #3d3d3d;
         }
         
         .profile-tabs {
@@ -464,10 +468,12 @@
             box-shadow: var(--shadow);
             height: 70vh;
             overflow-y: auto;
+            border: 1px solid #f0f0f0;
         }
         
         .dark-mode .messages-sidebar {
             background: #2d2d2d;
+            border-color: #3d3d3d;
         }
         
         .message-header {
@@ -561,10 +567,12 @@
             box-shadow: var(--shadow);
             height: 70vh;
             overflow-y: auto;
+            border: 1px solid #f0f0f0;
         }
         
         .dark-mode .message-content {
             background: #2d2d2d;
+            border-color: #3d3d3d;
         }
         
         .message-bubble {
@@ -704,8 +712,9 @@
         }
         
         .category-card:hover, .category-card.active {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: var(--secondary);
+            box-shadow: 0 8px 20px rgba(78, 205, 196, 0.2);
         }
         
         .dark-mode .category-card:hover, .dark-mode .category-card.active {
@@ -759,10 +768,12 @@
             box-shadow: var(--shadow);
             padding: 25px;
             margin: 25px 0;
+            border: 1px solid #f0f0f0;
         }
         
         .dark-mode .shopping-list {
             background: #2d2d2d;
+            border-color: #3d3d3d;
         }
         
         .shopping-header {
@@ -844,10 +855,12 @@
             box-shadow: var(--shadow);
             padding: 25px;
             margin: 25px 0;
+            border: 1px solid #f0f0f0;
         }
         
         .dark-mode .social-feed {
             background: #2d2d2d;
+            border-color: #3d3d3d;
         }
         
         .feed-header {
@@ -982,19 +995,23 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
+            border: 1px solid #f0f0f0;
         }
         
         .dark-mode .recipe-card {
             background: #2d2d2d;
+            border-color: #3d3d3d;
         }
         
         .recipe-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--secondary);
         }
         
         .dark-mode .recipe-card:hover {
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--secondary);
         }
         
         .recipe-img {
@@ -1140,10 +1157,12 @@
             padding: 30px;
             margin-top: 30px;
             display: none;
+            border: 1px solid #f0f0f0;
         }
         
         .dark-mode .recipe-detail {
             background: #2d2d2d;
+            border-color: #3d3d3d;
         }
         
         .detail-header {
@@ -1432,17 +1451,19 @@
         .premium-banner {
             background: linear-gradient(135deg, var(--premium-gold), #b89d2e);
             color: white;
-            padding: 15px;
+            padding: 30px;
             border-radius: var(--radius);
             text-align: center;
             margin: 25px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .dark-mode .premium-banner {
             background: linear-gradient(135deg, #b89d2e, #a08828);
+            box-shadow: 0 10px 30px rgba(184, 157, 46, 0.2);
         }
         
         .premium-banner::before {
@@ -1511,10 +1532,365 @@
             z-index: 100;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border: none;
         }
         
         .dark-mode-toggle:hover {
             transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(78, 205, 196, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            padding: 35px 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .dark-mode .modal-content {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+            padding: 0;
+            width: 30px;
+            height: 30px;
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .dark-mode .modal-close:hover {
+            color: var(--secondary);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+
+        .dark-mode .modal-title {
+            color: #e0e0e0;
+        }
+
+        /* Form Styles */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .dark-mode .form-group label {
+            color: #e0e0e0;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+            background: white;
+            color: var(--dark);
+        }
+
+        .dark-mode .form-group input,
+        .dark-mode .form-group textarea {
+            background: #333;
+            color: #e0e0e0;
+            border-color: #444;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+        }
+
+        .dark-mode .form-group input:focus,
+        .dark-mode .form-group textarea:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+        }
+
+        /* Auth Buttons */
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .auth-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .login-btn {
+            background: var(--primary);
+            color: white;
+        }
+
+        .login-btn:hover {
+            background: #ff5252;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .signup-btn {
+            background: var(--light);
+            color: var(--dark);
+            border: 1.5px solid var(--gray);
+        }
+
+        .signup-btn:hover {
+            background: #eff3f7;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .dark-mode .signup-btn {
+            background: #333;
+            color: #e0e0e0;
+            border-color: #444;
+        }
+
+        .dark-mode .signup-btn:hover {
+            background: #3d3d3d;
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            padding: 15px 0;
+        }
+
+        .dark-mode header {
+            background: #2d2d2d;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .dark-mode .logo {
+            color: var(--secondary);
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+        }
+
+        .search-bar {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: var(--light);
+            border-radius: 50px;
+            padding: 10px 20px;
+            gap: 10px;
+            max-width: 400px;
+        }
+
+        .dark-mode .search-bar {
+            background: #333;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+
+        .dark-mode .search-bar input {
+            color: #e0e0e0;
+        }
+
+        .search-bar input::placeholder {
+            color: var(--gray);
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        .dark-mode .btn {
+            background: #333;
+            color: #e0e0e0;
+        }
+
+        .btn:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .dark-mode .btn:hover {
+            background: #404040;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ff5252;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, var(--premium-gold), #b89d2e);
+            color: white;
+            font-weight: 700;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Install Button */
+        .install-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 700;
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .install-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Utility Styles */
+        body {
+            --body-bg: #ffffff;
+            --text-color: var(--dark);
+        }
+
+        body.dark-mode {
+            --body-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            background: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        main {
+            background: var(--body-bg);
         }
         
         /* Empty Space Fixer */
@@ -1524,10 +1900,13 @@
             padding: 30px;
             text-align: center;
             margin: 30px 0;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
         
         .dark-mode .empty-space {
             background: #2d2d2d;
+            border-color: #3d3d3d;
         }
         
         .empty-space h3 {
@@ -1567,14 +1946,23 @@
             padding: 25px;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border: 1px solid #f0f0f0;
         }
         
         .dark-mode .feature-card {
             background: #2d2d2d;
+            border-color: #3d3d3d;
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--secondary);
+        }
+        
+        .dark-mode .feature-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--secondary);
         }
         
         .feature-icon {
@@ -1648,6 +2036,8 @@
             overflow: hidden;
             margin: 25px 0;
             position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(78, 205, 196, 0.1);
         }
         
         .live-header {
@@ -1844,11 +2234,18 @@
             width: 100%;
             background: white;
             padding: 15px 0;
-            border-top: 1px solid #eee;
+            border-top: 2px solid #f0f0f0;
             display: flex;
             justify-content: space-around;
             align-items: center;
             z-index: 1000;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .dark-mode .tiktok-nav {
+            background: #2d2d2d;
+            border-top: 2px solid #3d3d3d;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
         }
         
         .nav-item {
@@ -1858,10 +2255,21 @@
             font-size: 0.9rem;
             color: var(--gray);
             cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-item:hover {
+            color: var(--primary);
+            transform: scale(1.1);
         }
         
         .nav-item.active {
             color: var(--primary);
+        }
+        
+        .dark-mode .nav-item.active {
+            color: var(--secondary);
         }
         
         .nav-item i {
@@ -3046,6 +3454,7 @@ const searchInput = document.getElementById('searchInput');
 const savedRecipesLink = document.getElementById('savedRecipes');
 const saveButtons = document.querySelectorAll('.save-btn');
 const viewRecipeButtons = document.querySelectorAll('.view-recipe');
+const navItems = document.querySelectorAll('.nav-item');
 
 // New menu elements
 const myAccountLink = document.getElementById('myAccount');
