@@ -702,8 +702,11 @@
         
         /* Main Content */
         main {
-            padding: var(--sp-3xl) 0;
+            padding: var(--sp-2xl) 0 120px 0;
             background: white;
+            margin: 0 auto;
+            max-width: 1280px;
+            width: 100%;
         }
 
         .dark-mode main {
@@ -713,7 +716,8 @@
         .section-title {
             font-size: var(--font-size-3xl);
             font-weight: 700;
-            margin-bottom: var(--sp-md);
+            margin-bottom: var(--sp-2xl);
+            margin-top: var(--sp-2xl);
             position: relative;
             padding-bottom: 0;
             display: flex;
@@ -724,7 +728,7 @@
         }
 
         .dark-mode .section-title {
-            color: #e0e0e0;
+            color: #f0f0f0;
         }
 
         .section-title::after {
@@ -739,10 +743,11 @@
             display: inline-block;
             font-weight: 700;
             letter-spacing: -0.3px;
+            color: var(--dark);
         }
 
         .dark-mode .section-subtitle {
-            color: #e0e0e0;
+            color: #f0f0f0;
             border-bottom: 2px solid var(--secondary);
         }
 
@@ -772,10 +777,16 @@
         .category-card {
             background: white;
             border-radius: var(--radius);
-            padding: var(--sp-xl) var(--sp-lg);
+            padding: var(--sp-lg) var(--sp-lg);
             text-align: center;
             flex: 0 0 auto;
             min-width: 110px;
+            max-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--sp-sm);
             box-shadow: var(--shadow-xs);
             cursor: pointer;
             transition: var(--transition-fast);
@@ -828,10 +839,11 @@
         }
 
         .category-card i {
-            font-size: 1.8rem;
-            margin-bottom: var(--sp-md);
+            font-size: 1.6rem;
             color: var(--primary);
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .dark-mode .category-card i {
@@ -850,6 +862,11 @@
             font-weight: 600;
             font-size: var(--font-size-sm);
             letter-spacing: -0.2px;
+            color: var(--dark);
+        }
+        
+        .dark-mode .category-card > div {
+            color: #f0f0f0;
         }
         
         .shopping-list {
@@ -1075,8 +1092,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: var(--sp-2xl);
-            margin-top: var(--sp-xl);
-            margin-bottom: 100px;
+            margin: var(--sp-2xl) 0;
         }
         
         .recipe-card {
@@ -1167,7 +1183,7 @@
         }
         
         .dark-mode .recipe-title {
-            color: #e0e0e0;
+            color: #f0f0f0;
         }
         
         .recipe-meta {
@@ -1180,7 +1196,7 @@
         }
         
         .dark-mode .recipe-meta {
-            color: #888;
+            color: #b0b0b0;
         }
         
         .recipe-desc {
@@ -1195,7 +1211,7 @@
         }
         
         .dark-mode .recipe-desc {
-            color: #ccc;
+            color: #b0b0b0;
         }
         
         .recipe-actions {
@@ -1287,7 +1303,7 @@
         }
         
         .dark-mode .detail-meta {
-            color: #888;
+            color: #b0b0b0;
         }
         
         .detail-meta div {
@@ -1314,7 +1330,8 @@
         }
         
         .ingredients-section, .instructions-section {
-            margin-bottom: 30px;
+            margin-bottom: var(--sp-2xl);
+            padding: var(--sp-lg) 0;
         }
         
         .section-subtitle {
@@ -1323,9 +1340,11 @@
             padding-bottom: 8px;
             border-bottom: 2px solid var(--secondary);
             display: inline-block;
+            color: var(--dark);
         }
         
         .dark-mode .section-subtitle {
+            color: #f0f0f0;
             border-bottom: 2px solid var(--secondary);
         }
         
@@ -1412,14 +1431,15 @@
         /* Footer */
         footer {
             background: var(--dark);
-            color: white;
+            color: #f0f0f0;
             text-align: center;
-            padding: 25px 0;
+            padding: var(--sp-2xl) 0;
             margin-top: 40px;
         }
         
         .dark-mode footer {
             background: #1a1a2e;
+            color: #e0e0e0;
         }
         
         /* Animations */
@@ -1689,10 +1709,10 @@
         .premium-banner {
             background: linear-gradient(135deg, var(--premium-gold) 0%, #b89d2e 100%);
             color: white;
-            padding: var(--sp-3xl);
+            padding: 24px 32px;
             border-radius: var(--radius-lg);
             text-align: center;
-            margin: var(--sp-3xl) 0;
+            margin: var(--sp-2xl) 0;
             box-shadow: var(--shadow-lg);
             position: relative;
             overflow: hidden;
@@ -1707,30 +1727,31 @@
         .premium-banner::before {
             content: '★';
             position: absolute;
-            font-size: 6rem;
-            opacity: 0.08;
-            top: -30px;
-            right: -30px;
+            font-size: 4rem;
+            opacity: 0.06;
+            top: -15px;
+            right: -15px;
             transform: rotate(15deg);
         }
 
         .premium-banner::after {
             content: '★';
             position: absolute;
-            font-size: 4rem;
-            opacity: 0.08;
-            bottom: -20px;
-            left: -20px;
+            font-size: 3rem;
+            opacity: 0.06;
+            bottom: -10px;
+            left: -10px;
             transform: rotate(-20deg);
         }
 
         .premium-banner h3 {
-            font-size: var(--font-size-2xl);
-            margin-bottom: var(--sp-md);
+            font-size: 1.4rem;
+            margin-bottom: 8px;
             font-weight: 700;
             letter-spacing: -0.4px;
             position: relative;
             z-index: 1;
+            color: white;
         }
 
         .premium-banner p {
@@ -2018,10 +2039,11 @@
 
         .dark-mode .logo {
             color: var(--secondary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .logo i {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2065,7 +2087,11 @@
         }
 
         .dark-mode .search-bar input {
-            color: #e0e0e0;
+            color: #f0f0f0;
+        }
+        
+        .dark-mode .search-bar input::placeholder {
+            color: #888;
         }
 
         .search-bar input::placeholder {
@@ -2193,8 +2219,9 @@
             transition: var(--transition-fast);
             font-size: var(--font-size-sm);
             letter-spacing: -0.2px;
-            bottom: 90px !important;
-            right: 20px !important;
+            bottom: 95px;
+            right: 20px;
+            z-index: 995;
         }
 
         .install-btn:hover {
@@ -2210,6 +2237,8 @@
         body {
             --body-bg: #ffffff;
             --text-color: var(--dark);
+            font-family: var(--font-sans);
+            line-height: 1.6;
         }
 
         body.dark-mode {
@@ -2221,6 +2250,11 @@
 
         main {
             background: var(--body-bg);
+        }
+        
+        main p {
+            line-height: 1.6;
+            color: var(--text-color);
         }
         
         /* Empty Space Fixer */
@@ -2267,7 +2301,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            margin: 30px 0;
+            margin: var(--sp-2xl) 0;
         }
         
         .feature-card {
@@ -2308,6 +2342,11 @@
         .feature-title {
             font-size: 1.4rem;
             margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .dark-mode .feature-title {
+            color: #f0f0f0;
         }
         
         .feature-desc {
@@ -2316,7 +2355,7 @@
         }
         
         .dark-mode .feature-desc {
-            color: #888;
+            color: #b0b0b0;
         }
         
         /* Tab Navigation */
@@ -2339,7 +2378,7 @@
             cursor: pointer;
             border-bottom: 2px solid transparent;
             transition: var(--transition-fast);
-            color: var(--gray);
+            color: #888;
             letter-spacing: -0.2px;
             position: relative;
             white-space: nowrap;
@@ -2360,6 +2399,7 @@
         .tab.active {
             color: var(--primary);
             border-bottom: 2px solid var(--primary);
+            font-weight: 700;
         }
 
         .dark-mode .tab.active {
@@ -2575,7 +2615,7 @@
             left: 0;
             width: 100%;
             background: white;
-            padding: var(--sp-md) 0;
+            padding: var(--sp-sm) 0;
             border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-around;
@@ -2583,6 +2623,7 @@
             z-index: 1000;
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
             gap: 0;
+            height: 70px;
         }
 
         .dark-mode .tiktok-nav {
@@ -2597,31 +2638,37 @@
             align-items: center;
             gap: var(--sp-xs);
             font-size: var(--font-size-xs);
-            color: var(--gray);
+            color: #888;
             cursor: pointer;
             transition: var(--transition-fast);
             position: relative;
-            padding: var(--sp-md);
+            padding: var(--sp-md) var(--sp-sm);
             flex: 1;
             justify-content: center;
             min-height: 60px;
+            text-decoration: none;
         }
 
         .nav-item:hover {
             color: var(--primary);
-            transform: scale(1.05);
         }
 
         .nav-item.active {
             color: var(--primary);
+            font-weight: 600;
         }
 
+        .dark-mode .nav-item {
+            color: #888;
+        }
+        
         .dark-mode .nav-item.active {
             color: var(--secondary);
         }
 
         .nav-item i {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            transition: var(--transition-fast);
         }
 
         .nav-item span {
