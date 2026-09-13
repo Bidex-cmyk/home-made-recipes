@@ -2615,6 +2615,80 @@
             border: 1px solid var(--surface-3);
         }
 
+        /* Age Verification Gate */
+        .age-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+        .age-gate.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .age-gate-box {
+            background: var(--surface-1);
+            border-radius: var(--radius-lg);
+            padding: 40px 35px;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp 0.4s ease-out;
+        }
+        .dark-mode .age-gate-box {
+            background: var(--surface-1);
+        }
+        .age-gate-box .age-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        .age-gate-box h2 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        .age-gate-box p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            line-height: 1.5;
+            font-size: var(--font-size-sm);
+        }
+        .age-gate-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .age-gate-buttons .btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+        }
+        .age-yes {
+            background: var(--primary);
+            color: white !important;
+        }
+        .age-no {
+            background: var(--surface-3);
+            color: var(--text-primary) !important;
+        }
+        /* Highlight effect for recipe cards */
+        .recipe-card.highlight {
+            animation: cardHighlight 1.5s ease;
+        }
+        @keyframes cardHighlight {
+            0%, 100% { box-shadow: var(--shadow-sm); }
+            50% { box-shadow: 0 0 0 3px var(--secondary), var(--shadow-lg); }
+        }
         /* Dark-mode video/live sections */
         .dark-mode .video-placeholder i,
         .dark-mode .live-video i {
@@ -3463,6 +3537,14 @@
         .friend-btn {
             padding: 8px 15px;
             border-radius: 50px;
+            transition: var(--transition-fast);
+        }
+        .friend-btn.btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .dark-mode .friend-btn.btn-primary {
+            background: var(--secondary);
         }
         * {
             font-family: var(--font-sans);
@@ -3596,6 +3678,19 @@
         <div class="nav-item">
             <i class="fas fa-user"></i>
             <span>Profile</span>
+        </div>
+    </div>
+    
+    <!-- Age Verification Gate -->
+    <div class="age-gate" id="ageGate">
+        <div class="age-gate-box">
+            <div class="age-icon">🔒</div>
+            <h2>Age Verification</h2>
+            <p>This website contains content intended for users aged 18 and over. By entering, you confirm you are at least 18 years old.</p>
+            <div class="age-gate-buttons">
+                <button class="btn age-yes" id="ageYes">I am 18+</button>
+                <button class="btn age-no" id="ageNo">I am under 18</button>
+            </div>
         </div>
     </div>
     
@@ -4396,10 +4491,14 @@ const friendsPage = document.getElementById('friends-page');
 let deferredInstallPrompt = null;
 
 function initApp() {
+    checkAgeVerification();
     setupEventListeners();
     checkDarkMode();
     checkUserAuth();
     loadLocalSavedState();
+    setupCategoryFilter();
+    setupShoppingList();
+    setupFollowButtons();
     if (!demoMode) {
         loadRecipes();
     }
@@ -4415,6 +4514,9 @@ function setupEventListeners() {
             tabContents.forEach(content => content.classList.remove('active'));
             const target = document.getElementById(`${tabId}-content`);
             if (target) target.classList.add('active');
+            // Sync bottom nav with tabs
+            const tabNavMap = { home: 0, videos: -1, recipes: -1, social: -1 };
+            if (tabId in tabNavMap && tabNavMap[tabId] >= 0) syncBottomNav(tabNavMap[tabId]);
         });
     });
 
@@ -4422,11 +4524,16 @@ function setupEventListeners() {
         darkModeToggle.addEventListener('click', toggleDarkMode);
     }
 
-    // Avatar: toggle the account dropdown
+    // Avatar: toggle the account dropdown (or show login if not logged in)
     if (userProfile) {
         userProfile.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (dropdownMenu) dropdownMenu.classList.toggle('active');
+            const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+            if (!isLoggedIn) {
+                showLoginModal();
+            } else {
+                if (dropdownMenu) dropdownMenu.classList.toggle('active');
+            }
         });
     }
 
@@ -4578,6 +4685,14 @@ function setupEventListeners() {
             }
         });
     }
+    if (messageInput) {
+        messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && messageInput.value.trim()) {
+                sendMessage(messageInput.value);
+                messageInput.value = '';
+            }
+        });
+    }
 
     // Post creation buttons
     const createPostBtn = document.getElementById('createPost');
@@ -4593,6 +4708,57 @@ function setupEventListeners() {
     const postVideoBtn = document.getElementById('postVideo');
     if (postVideoBtn) {
         postVideoBtn.addEventListener('click', showUploadVideoModal);
+    }
+
+    const postLifestyleBtn = document.getElementById('postLifestyle');
+    if (postLifestyleBtn) {
+        postLifestyleBtn.addEventListener('click', () => showNotification('Lifestyle posting coming soon!'));
+    }
+
+    const findHotelsBtn = document.getElementById('findHotels');
+    if (findHotelsBtn) {
+        findHotelsBtn.addEventListener('click', () => showNotification('Restaurant finder coming soon!'));
+    }
+
+    const bannerPremiumBtn = document.getElementById('bannerPremiumBtn');
+    if (bannerPremiumBtn) {
+        bannerPremiumBtn.addEventListener('click', () => showNotification('Premium upgrade coming soon!'));
+    }
+
+    const startCookingBtn = document.getElementById('startCooking');
+    if (startCookingBtn) {
+        startCookingBtn.addEventListener('click', () => showNotification('Cooking timer started! Follow the steps above.'));
+    }
+
+    const shareRecipeBtn = document.getElementById('shareRecipe');
+    if (shareRecipeBtn) {
+        shareRecipeBtn.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({ title: 'Creamy Mushroom Risotto', url: window.location.href }).catch(() => {});
+            } else {
+                showNotification('Link copied to clipboard!');
+            }
+        });
+    }
+
+    const uploadNewVideoBtn = document.getElementById('uploadNewVideo');
+    if (uploadNewVideoBtn) {
+        uploadNewVideoBtn.addEventListener('click', showUploadVideoModal);
+    }
+
+    const uploadFirstVideoBtn = document.getElementById('uploadFirstVideo');
+    if (uploadFirstVideoBtn) {
+        uploadFirstVideoBtn.addEventListener('click', showUploadVideoModal);
+    }
+
+    const postNewLifestyleBtn = document.getElementById('postNewLifestyle');
+    if (postNewLifestyleBtn) {
+        postNewLifestyleBtn.addEventListener('click', () => showNotification('Lifestyle posting coming soon!'));
+    }
+
+    const startLiveBtn = document.getElementById('startLiveSession');
+    if (startLiveBtn) {
+        startLiveBtn.addEventListener('click', () => showNotification('Live streaming coming soon!'));
     }
 
     document.addEventListener('click', (e) => {
@@ -4848,7 +5014,7 @@ function showNotification(message) {
 }
 
 // Page Navigation Functions
-function hideAllPages() {
+function hideAllPages(showHomeTab = false) {
     const tabContents = document.querySelectorAll('.tab-content');
     tabContents.forEach(content => content.classList.remove('active'));
     
@@ -4858,12 +5024,21 @@ function hideAllPages() {
     if (livePage) livePage.style.display = 'none';
     if (messagesPage) messagesPage.style.display = 'none';
     if (friendsPage) friendsPage.style.display = 'none';
+    
+    // Scroll to top on navigation
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    if (showHomeTab) {
+        const homeTab = document.querySelector('.tab[data-tab="home"]');
+        if (homeTab) homeTab.click();
+    }
 }
 
 function showProfilePage() {
     hideAllPages();
     if (profilePage) profilePage.style.display = 'grid';
     if (dropdownMenu) dropdownMenu.classList.remove('active');
+    syncBottomNav(4);
     updateProfilePage();
 }
 
@@ -4889,12 +5064,14 @@ function showMessagesPage() {
     hideAllPages();
     if (messagesPage) messagesPage.style.display = 'grid';
     if (dropdownMenu) dropdownMenu.classList.remove('active');
+    syncBottomNav(3);
 }
 
 function showFriendsPage() {
     hideAllPages();
     if (friendsPage) friendsPage.style.display = 'block';
     if (dropdownMenu) dropdownMenu.classList.remove('active');
+    syncBottomNav(1);
 }
 
 function updateProfilePage() {
@@ -5091,22 +5268,17 @@ function handleLogout() {
     localStorage.removeItem('userLoggedIn');
     localStorage.removeItem('userEmail');
     if (userProfile) userProfile.innerHTML = '<i class="fas fa-user" style="font-size: 0.85rem;"></i>';
-    hideAllPages();
+    hideAllPages(true);
     showNotification('Logged out successfully!');
-    setTimeout(() => {
-        const homeTab = document.querySelector('.tab[data-tab="home"]');
-        if (homeTab) homeTab.click();
-        showLoginModal();
-    }, 500);
+    syncBottomNav(0);
+    setTimeout(() => showLoginModal(), 500);
 }
 
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('Service worker registered:', reg.scope))
-                .catch(err => console.warn('Service worker failed:', err));
-        });
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('Service worker registered:', reg.scope))
+            .catch(err => console.warn('Service worker failed:', err));
     }
 }
 
@@ -5149,6 +5321,137 @@ window.addEventListener('beforeinstallprompt', (event) => {
         deferredInstallPrompt = null;
     });
 });
+
+// ---- Additional Feature Functions ----
+
+function checkAgeVerification() {
+    const verified = localStorage.getItem('ageVerified');
+    if (!verified) {
+        const gate = document.getElementById('ageGate');
+        if (gate) gate.style.display = 'flex';
+        const yesBtn = document.getElementById('ageYes');
+        const noBtn = document.getElementById('ageNo');
+        if (yesBtn) yesBtn.addEventListener('click', () => {
+            localStorage.setItem('ageVerified', 'true');
+            gate.classList.add('hidden');
+            setTimeout(() => gate.style.display = 'none', 400);
+        });
+        if (noBtn) noBtn.addEventListener('click', () => {
+            document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;text-align:center;padding:20px;"><div><h1 style="font-size:2rem;margin-bottom:10px;">Access Denied</h1><p style="color:#888;">You must be 18 or older to use Home Made Recipe.</p></div></div>';
+        });
+    } else {
+        const gate = document.getElementById('ageGate');
+        if (gate) gate.style.display = 'none';
+    }
+}
+
+function setupCategoryFilter() {
+    const categoryCards = document.querySelectorAll('.category-card');
+    categoryCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.dataset.category;
+            const isPremium = card.classList.contains('premium');
+            
+            // Update active state
+            categoryCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            
+            if (isPremium) {
+                showNotification('🔒 Premium required for ' + card.querySelector('.category-name').textContent + ' recipes. Upgrade to unlock!');
+                return;
+            }
+            
+            // Filter recipe cards in the home tab
+            const homeGrid = document.querySelector('#home-content .recipes-grid');
+            if (!homeGrid) return;
+            const cards = homeGrid.querySelectorAll('.recipe-card');
+            cards.forEach(c => {
+                if (category === 'all') {
+                    c.style.display = '';
+                } else {
+                    // Simple keyword matching on title/desc
+                    const text = (c.querySelector('.recipe-title')?.textContent || '') + ' ' + (c.querySelector('.recipe-desc')?.textContent || '');
+                    const lowerText = text.toLowerCase();
+                    const matches = lowerText.includes(category);
+                    c.style.display = matches ? '' : 'none';
+                }
+            });
+        });
+    });
+}
+
+function setupShoppingList() {
+    const clearBtn = document.getElementById('clearList');
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            const items = document.querySelector('.shopping-items');
+            if (items) {
+                items.innerHTML = '<div style="text-align:center;padding:20px;color:var(--gray);">Shopping list is empty. Add items from recipes!</div>';
+                showNotification('Shopping list cleared!');
+            }
+        });
+    }
+    
+    const addBtn = document.getElementById('addToList');
+    if (addBtn) {
+        addBtn.addEventListener('click', () => {
+            const name = prompt('Enter item name:');
+            if (name && name.trim()) {
+                const qty = prompt('Enter quantity:', '1') || '1';
+                const items = document.querySelector('.shopping-items');
+                if (items) {
+                    // Remove empty message if present
+                    if (items.querySelector('div[style]')) {
+                        items.innerHTML = '';
+                    }
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'shopping-item';
+                    itemDiv.innerHTML = `
+                        <div class="item-name">${name.trim()}</div>
+                        <div class="item-quantity">${qty.trim()}</div>
+                        <div class="item-actions">
+                            <button class="item-btn"><i class="fas fa-plus"></i></button>
+                            <button class="item-btn"><i class="fas fa-minus"></i></button>
+                        </div>
+                    `;
+                    // Add remove handler
+                    itemDiv.querySelector('.fa-minus').parentElement.addEventListener('click', () => itemDiv.remove());
+                    items.appendChild(itemDiv);
+                    showNotification('Item added to shopping list!');
+                }
+            }
+        });
+    }
+    
+    // Wire up existing remove buttons
+    document.querySelectorAll('.shopping-item .fa-minus').forEach(btn => {
+        btn.parentElement.addEventListener('click', () => {
+            btn.closest('.shopping-item').remove();
+        });
+    });
+}
+
+function setupFollowButtons() {
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.friend-btn');
+        if (!btn) return;
+        if (btn.textContent.trim() === 'Following') {
+            btn.textContent = 'Follow';
+            btn.classList.remove('btn-primary');
+            showNotification('Unfollowed user');
+        } else {
+            btn.textContent = 'Following';
+            btn.classList.add('btn-primary');
+            showNotification('Now following!');
+        }
+    });
+}
+
+function syncBottomNav(index) {
+    navItems.forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+    });
+}
 
 initApp();
 registerServiceWorker();
