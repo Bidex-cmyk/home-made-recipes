@@ -19,4 +19,4 @@ Unlock foreign recipes (Thai, Japanese, French) and advanced techniques with sub
 
 ---
 
-Made with ❤️ | [Live Demo](https://baedboibidex-cmyk.github.io/home-made-recipe)
+Made with ❤️ | [Live Demo](https://home-made-recipe-c857f.web.app)
