@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Made Recipe - Social Cooking Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#ff6b6b">
+    <meta name="description" content="Home Made Recipe - A premium social cooking platform with international recipes, cooking videos, and community features.">
     <!-- Firebase SDKs -->
     <style>
         :root {
@@ -1177,11 +1181,15 @@
         }
         
         .recipe-img {
-            height: 180px;
+            height: 200px;
             width: 100%;
             background-size: cover;
             background-position: center;
             position: relative;
+            transition: var(--transition);
+        }
+        .recipe-card:hover .recipe-img {
+            filter: brightness(0.9);
         }
         
         .premium-lock {
@@ -1861,22 +1869,34 @@
         /* Notification Styles */
         .notification {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 24px;
+            right: 24px;
             background: var(--dark);
             color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            box-shadow: var(--shadow);
+            padding: 14px 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
             z-index: 10000;
-            max-width: 350px;
+            max-width: 380px;
             text-align: center;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
             animation: slideUp 0.3s ease-out, fadeOut 0.3s ease-out 2.7s;
             animation-fill-mode: forwards;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        @media (max-width: 480px) {
+            .notification {
+                left: 16px;
+                right: 16px;
+                max-width: none;
+                bottom: calc(var(--bottom-nav-height, 70px) + 16px);
+            }
         }
         
         .dark-mode .notification {
-            background: #1a1a2e;
+            background: var(--surface-2);
+            border-color: var(--surface-3);
         }
         
         @keyframes fadeOut {
@@ -2747,6 +2767,415 @@
         .dark-mode .page-intro {
             color: #b0b0b0;
         }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #f0932b 100%);
+            border-radius: var(--radius-lg);
+            padding: 48px 40px;
+            margin-bottom: var(--sp-3xl);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            margin-bottom: 16px;
+            backdrop-filter: blur(4px);
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            letter-spacing: -0.8px;
+        }
+        .hero p {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            max-width: 480px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .hero-btn {
+            padding: 12px 28px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: var(--font-size-sm);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hero-btn-primary {
+            background: white;
+            color: #ff6b6b;
+        }
+        .hero-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .hero-btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.4);
+            backdrop-filter: blur(4px);
+        }
+        .hero-btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        .dark-mode .hero {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        .dark-mode .hero-btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                padding: 32px 24px;
+                min-height: 180px;
+            }
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero {
+                padding: 24px 20px;
+                border-radius: var(--radius);
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+            }
+            .hero-btn {
+                justify-content: center;
+            }
+        }
+
+        /* Search Dropdown */
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--surface-1);
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            max-height: 320px;
+            overflow-y: auto;
+            display: none;
+            z-index: 600;
+        }
+        .search-dropdown.active {
+            display: block;
+            animation: slideDown 0.2s ease;
+        }
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            border-bottom: 1px solid var(--border);
+        }
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        .search-result-item:hover {
+            background: var(--surface-2);
+        }
+        .search-result-img {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+        .search-result-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .search-result-title {
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .search-result-meta {
+            font-size: var(--font-size-xs);
+            color: var(--text-muted);
+        }
+        .search-empty {
+            padding: 24px 16px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        /* Recipe Detail Modal */
+        .recipe-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .recipe-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .recipe-modal {
+            background: var(--surface-1);
+            border-radius: var(--radius-lg);
+            max-width: 680px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp 0.3s ease-out;
+            margin: auto;
+        }
+        .recipe-modal-img {
+            width: 100%;
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .recipe-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+            z-index: 10;
+        }
+        .recipe-modal-close:hover {
+            background: rgba(0,0,0,0.8);
+            transform: rotate(90deg);
+        }
+        .recipe-modal-body {
+            padding: 24px;
+        }
+        .recipe-modal-body h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.4px;
+            color: var(--text-primary);
+        }
+        .recipe-modal-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .recipe-modal-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: var(--font-size-sm);
+            color: var(--text-muted);
+        }
+        .recipe-modal-meta i {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        .recipe-modal-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: var(--font-size-sm);
+        }
+        .recipe-modal-section {
+            margin-bottom: 20px;
+        }
+        .recipe-modal-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .recipe-modal-section h3 i {
+            color: var(--secondary);
+        }
+        .recipe-modal-ingredients {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 8px;
+        }
+        .recipe-modal-ingredient {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: var(--surface-2);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            user-select: none;
+        }
+        .recipe-modal-ingredient:hover {
+            background: var(--surface-3);
+        }
+        .recipe-modal-ingredient.checked {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+        .recipe-modal-ingredient i {
+            color: var(--success);
+            font-size: 0.85rem;
+        }
+        .recipe-modal-steps {
+            list-style: none;
+            padding: 0;
+            counter-reset: step;
+        }
+        .recipe-modal-step {
+            counter-increment: step;
+            position: relative;
+            padding: 12px 12px 12px 44px;
+            margin-bottom: 8px;
+            background: var(--surface-2);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .recipe-modal-step::before {
+            content: counter(step);
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+        .dark-mode .recipe-modal-step::before {
+            background: var(--secondary);
+        }
+        .recipe-modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        .recipe-modal-actions .btn {
+            flex: 1;
+            justify-content: center;
+        }
+
+        /* Like Animation */
+        @keyframes likePopIn {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        .post-action.liked {
+            color: var(--primary) !important;
+        }
+        .post-action.liked i {
+            animation: likePopIn 0.3s ease;
+        }
+
+        /* Focus Visible for Accessibility */
+        :focus-visible {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        button:focus-visible {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
         
         /* Empty Space Fixer */
         .empty-space {
@@ -3597,9 +4026,10 @@
                 <i class="fas fa-utensils"></i>
                 <span>Home Made Recipe</span>
             </div>
-            <div class="search-bar">
+            <div class="search-bar" style="position: relative;">
                 <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search recipes, ingredients, or cuisines...">
+                <input type="text" id="searchInput" placeholder="Search recipes, ingredients, or cuisines..." aria-label="Search recipes">
+                <div class="search-dropdown" id="searchDropdown"></div>
             </div>
             <div class="user-actions">
                 <button class="btn btn-premium" id="premiumBtn">
@@ -3649,7 +4079,7 @@
                         </a>
                     </div>
                 </div>
-                <button class="btn" id="darkModeToggle">
+                <button class="btn" id="darkModeToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
@@ -3705,8 +4135,22 @@
         
         <!-- Home Tab Content -->
         <div class="tab-content active" id="home-content">
-            <h1 class="section-title">Discover Delicious Recipes</h1>
-            <p class="page-intro">Find inspiration for your next meal with our curated collection of homemade recipes for every occasion and skill level.</p>
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">🍳 What's cooking today?</div>
+                    <h1>Discover Delicious Homemade Recipes</h1>
+                    <p>Find inspiration for your next meal with our curated collection of recipes for every occasion and skill level.</p>
+                    <div class="hero-actions">
+                        <button class="hero-btn hero-btn-primary" onclick="document.querySelector('.tab[data-tab=\"recipes\"]').click()">
+                            <i class="fas fa-compass"></i> Explore Recipes
+                        </button>
+                        <button class="hero-btn hero-btn-secondary" onclick="document.querySelector('.tab[data-tab=\"social\"]').click()">
+                            <i class="fas fa-users"></i> Join Community
+                        </button>
+                    </div>
+                </div>
+            </div>
             
             <!-- Premium Banner -->
             <div class="premium-banner">
@@ -4151,7 +4595,7 @@
                     
                     <div class="post-content">
                         <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                             alt="Sushi" class="post-image">
+                             alt="Homemade sushi roll" class="post-image" loading="lazy">
                         <div class="post-caption">
                             <p>Just mastered this homemade sushi roll! Took me 3 tries but finally got the rice perfect. What do you think? #sushilover #homemade</p>
                         </div>
@@ -4162,7 +4606,7 @@
                     </div>
                     
                     <div class="post-actions">
-                        <div class="post-action">
+                        <div class="post-action" onclick="toggleLike(this)">
                             <i class="far fa-heart"></i> Like
                         </div>
                         <div class="post-action">
@@ -4174,7 +4618,105 @@
                     </div>
                 </div>
                 
-                <!-- More posts... -->
+                <!-- Post 2 -->
+                <div class="feed-post">
+                    <div class="post-header">
+                        <div class="post-author">
+                            <div class="author-avatar" style="background: #ff6b6b;">M</div>
+                            <div class="author-info">
+                                <div class="author-name">Maria Garcia</div>
+                                <div class="post-time">5 hours ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                             alt="Homemade Pizza" class="post-image" loading="lazy">
+                        <div class="post-caption">
+                            <p>Homemade margherita pizza from scratch! The secret is letting the dough rise overnight. Crispy crust, fresh mozzarella, and basil from my garden 🌿 #homemadepizza #italian</p>
+                        </div>
+                    </div>
+                    <div class="post-likes">
+                        <div><i class="fas fa-heart"></i> <span class="like-count">182</span></div>
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action" onclick="toggleLike(this)">
+                            <i class="far fa-heart"></i> Like
+                        </div>
+                        <div class="post-action">
+                            <i class="far fa-comment"></i> Comment
+                        </div>
+                        <div class="post-action">
+                            <i class="far fa-share-square"></i> Share
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="feed-post">
+                    <div class="post-header">
+                        <div class="post-author">
+                            <div class="author-avatar" style="background: #51cf66;">S</div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah Chen</div>
+                                <div class="post-time">1 day ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                             alt="French Toast" class="post-image" loading="lazy">
+                        <div class="post-caption">
+                            <p>Weekend brunch vibes ✨ French toast with berries and maple syrup. Simple but absolutely divine. Who else loves a lazy Sunday morning breakfast?</p>
+                        </div>
+                    </div>
+                    <div class="post-likes">
+                        <div><i class="fas fa-heart"></i> <span class="like-count">314</span></div>
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action" onclick="toggleLike(this)">
+                            <i class="far fa-heart"></i> Like
+                        </div>
+                        <div class="post-action">
+                            <i class="far fa-comment"></i> Comment
+                        </div>
+                        <div class="post-action">
+                            <i class="far fa-share-square"></i> Share
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 4 -->
+                <div class="feed-post">
+                    <div class="post-header">
+                        <div class="post-author">
+                            <div class="author-avatar" style="background: #ffd43b; color: #333;">J</div>
+                            <div class="author-info">
+                                <div class="author-name">Jessica Lee</div>
+                                <div class="post-time">2 days ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-caption">
+                            <p>Pro tip: Always toast your spices before grinding them. It unlocks an incredible depth of flavor that makes every dish taste restaurant-quality. Try it with cumin and coriander! 🌶️ #cookingtips #spices</p>
+                        </div>
+                    </div>
+                    <div class="post-likes">
+                        <div><i class="fas fa-heart"></i> <span class="like-count">96</span></div>
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action" onclick="toggleLike(this)">
+                            <i class="far fa-heart"></i> Like
+                        </div>
+                        <div class="post-action">
+                            <i class="far fa-comment"></i> Comment
+                        </div>
+                        <div class="post-action">
+                            <i class="far fa-share-square"></i> Share
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -4415,18 +4957,68 @@
     </main>
     
     <!-- Footer -->
-    <footer>
+    <footer style="background: var(--dark); color: #e0e0e0; padding: 48px 0 0; margin-top: 40px;">
         <div class="container">
-            <p>&copy; 2026 Home Made Recipe. All rights reserved.</p>
-            <p style="font-size: 0.9rem; margin-top: 5px; opacity: 0.9;">
-                verify18+ content • Premium subscription required for foreign recipes & advanced methods
-            </p>
-            <div style="margin-top: 10px;">
-                <a href="#" style="color: var(--secondary); margin: 0 10px; text-decoration: none;">Privacy Policy</a>
-                <a href="#" style="color: var(--secondary); margin: 0 10px; text-decoration: none;">Terms of Service</a>
-                <a href="#" style="color: var(--secondary); margin: 0 10px; text-decoration: none;">Contact Us</a>
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                        <i class="fas fa-utensils" style="color: var(--primary); font-size: 1.5rem;"></i>
+                        <span style="font-size: 1.2rem; font-weight: 700; color: white;">Home Made Recipe</span>
+                    </div>
+                    <p style="color: #999; font-size: 0.9rem; line-height: 1.6; max-width: 280px; margin-bottom: 20px;">Discover, cook, and share amazing recipes with our community of food lovers around the world.</p>
+                    <div style="display: flex; gap: 12px;">
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.2s;" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.2s;" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.2s;" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.2s;" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: white; font-weight: 700; margin-bottom: 16px; font-size: 0.95rem;">Product</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Recipes</a>
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Cooking Videos</a>
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Premium</a>
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Shopping List</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: white; font-weight: 700; margin-bottom: 16px; font-size: 0.95rem;">Community</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Social Feed</a>
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Friends</a>
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Live Sessions</a>
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Messages</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: white; font-weight: 700; margin-bottom: 16px; font-size: 0.95rem;">Support</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Help Center</a>
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Contact Us</a>
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Privacy Policy</a>
+                        <a href="#" style="color: #999; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <p style="color: #666; font-size: 0.85rem; margin: 0;">&copy; 2026 Home Made Recipe. All rights reserved.</p>
+                <p style="color: #666; font-size: 0.85rem; margin: 0;">18+ content &bull; Premium required for international recipes</p>
             </div>
         </div>
+        <style>
+            @media (max-width: 768px) {
+                footer .container > div:first-child {
+                    grid-template-columns: 1fr 1fr !important;
+                }
+            }
+            @media (max-width: 480px) {
+                footer .container > div:first-child {
+                    grid-template-columns: 1fr !important;
+                    gap: 24px !important;
+                }
+            }
+        </style>
     </footer>
     
 <script type="module">
@@ -4499,6 +5091,7 @@ function initApp() {
     setupCategoryFilter();
     setupShoppingList();
     setupFollowButtons();
+    setupSearchDropdown();
     if (!demoMode) {
         loadRecipes();
     }
@@ -4561,9 +5154,7 @@ function setupEventListeners() {
         button.addEventListener('click', handleViewRecipe);
     });
 
-    if (searchInput) {
-        searchInput.addEventListener('input', throttle(filterRecipes, 150));
-    }
+    // Search is handled by setupSearchDropdown()
 
     if (savedRecipesLink) {
         savedRecipesLink.addEventListener('click', (event) => {
@@ -5452,6 +6043,241 @@ function syncBottomNav(index) {
         item.classList.toggle('active', i === index);
     });
 }
+
+// ---- Recipe Detail Modal ----
+const recipeDatabase = {
+    'avocado-toast': {
+        title: 'Avocado Toast with Poached Eggs',
+        time: '15 mins',
+        servings: '2',
+        calories: '320 kcal',
+        rating: '4.8',
+        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1160&q=80',
+        desc: 'A perfect healthy breakfast with creamy avocado, perfectly poached eggs, and a sprinkle of chili flakes on sourdough bread.',
+        ingredients: ['2 slices sourdough bread', '1 ripe avocado', '2 eggs', '1 tbsp white vinegar', 'Chili flakes', 'Salt and pepper', 'Extra virgin olive oil', 'Fresh lemon juice'],
+        steps: ['Toast sourdough bread until golden and crispy.', 'Mash avocado with lemon juice, salt, and pepper.', 'Bring water to a gentle simmer, add vinegar.', 'Create a gentle whirlpool and slide in eggs one at a time.', 'Poach for 3-4 minutes until whites are set.', 'Spread mashed avocado on toast, top with poached eggs.', 'Sprinkle with chili flakes and drizzle with olive oil.']
+    },
+    'carbonara': {
+        title: 'Classic Spaghetti Carbonara',
+        time: '25 mins',
+        servings: '4',
+        calories: '580 kcal',
+        rating: '4.9',
+        image: 'https://images.unsplash.com/photo-1547592164-6f5f5f9a1880?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+        desc: 'Authentic Italian carbonara with crispy pancetta, egg sauce, and plenty of Parmigiano-Reggiano cheese. No cream needed!',
+        ingredients: ['400g spaghetti', '200g pancetta or guanciale', '4 egg yolks', '1 whole egg', '100g Pecorino Romano', '50g Parmigiano-Reggiano', 'Black pepper', 'Salt'],
+        steps: ['Cook spaghetti in salted water until al dente.', 'Cut pancetta into small cubes and cook until crispy.', 'Whisk egg yolks, whole egg, and grated cheeses together.', 'Reserve 1 cup pasta water before draining.', 'Toss hot pasta with pancetta off heat.', 'Quickly pour egg mixture over pasta, tossing vigorously.', 'Add pasta water as needed for creamy consistency.', 'Season generously with black pepper and serve immediately.']
+    },
+    'salmon': {
+        title: 'Grilled Salmon with Lemon Dill Sauce',
+        time: '25 mins',
+        servings: '2',
+        calories: '420 kcal',
+        rating: '4.7',
+        image: 'https://images.unsplash.com/photo-1563240670-a7c7fac1b771?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+        desc: 'Perfectly grilled salmon fillets topped with a fresh lemon dill sauce, served with roasted asparagus.',
+        ingredients: ['2 salmon fillets', '1 bunch fresh dill', '2 lemons', '2 tbsp butter', '1 tbsp olive oil', '1 bunch asparagus', 'Salt and pepper', '2 cloves garlic'],
+        steps: ['Season salmon with salt, pepper, and olive oil.', 'Preheat grill or pan to medium-high heat.', 'Grill salmon skin-side down for 4-5 minutes.', 'Flip and cook another 3-4 minutes.', 'For sauce: melt butter, add lemon juice and chopped dill.', 'Toss asparagus with garlic and roast at 400°F.', 'Plate salmon over asparagus, drizzle with sauce.', 'Garnish with fresh dill and lemon wedges.']
+    },
+    'thai-curry': {
+        title: 'Authentic Thai Green Curry',
+        time: '45 mins',
+        servings: '4',
+        calories: '480 kcal',
+        rating: '4.9',
+        image: 'https://images.unsplash.com/photo-1593819559779-4f033560e489?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+        desc: 'Master the art of Thai curry paste from scratch with lemongrass, galangal, and kaffir lime leaves.',
+        ingredients: ['400ml coconut milk', '3 tbsp green curry paste', '500g chicken breast', 'Thai basil', 'Fish sauce', 'Palm sugar', 'Kaffir lime leaves', 'Thai eggplant', 'Bamboo shoots'],
+        steps: ['Fry curry paste in thick coconut cream until fragrant.', 'Add sliced chicken and cook until white.', 'Pour in remaining coconut milk.', 'Season with fish sauce and palm sugar.', 'Add eggplant and bamboo shoots.', 'Simmer for 15 minutes until vegetables are tender.', 'Tear in kaffir lime leaves and Thai basil.', 'Serve hot with jasmine rice.']
+    },
+    'ramen': {
+        title: 'Japanese Ramen (Tonkotsu)',
+        time: '18 hrs',
+        servings: '4',
+        calories: '620 kcal',
+        rating: '4.8',
+        image: 'https://images.unsplash.com/photo-1555939316-7f632942d2eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+        desc: 'Learn the 18-hour process for authentic pork bone broth, handmade noodles, and perfect chashu pork.',
+        ingredients: ['2kg pork bones', '1kg pork belly', 'Fresh ramen noodles', 'Soy sauce', 'Mirin', 'Soft-boiled eggs', 'Green onions', 'Nori sheets', 'Garlic', 'Ginger'],
+        steps: ['Blanch pork bones, then simmer for 12-18 hours.', 'Braise pork belly in soy sauce, mirin, and sake.', 'Strain broth until milky and creamy.', 'Season broth with tare (soy-based seasoning).', 'Cook fresh ramen noodles until just done.', 'Slice chashu pork.', 'Assemble: noodles, broth, chashu, egg, toppings.', 'Serve immediately while piping hot.']
+    },
+    'souffle': {
+        title: 'French Soufflé Masterclass',
+        time: '50 mins',
+        servings: '4',
+        calories: '280 kcal',
+        rating: '4.7',
+        image: 'https://images.unsplash.com/photo-1565958011704-4a87de7997a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+        desc: 'Perfect the delicate art of soufflés with chef techniques for stable egg whites and oven temperature control.',
+        ingredients: ['4 egg whites', '3 egg yolks', '50g butter', '50g flour', '200ml milk', '100g Gruyère cheese', 'Salt', 'Pinch of cream of tartar', 'Nutmeg'],
+        steps: ['Make béchamel: melt butter, whisk in flour, add milk.', 'Remove from heat, whisk in egg yolks and cheese.', 'Whip egg whites with cream of tartar to stiff peaks.', 'Fold 1/3 whites into base to lighten.', 'Gently fold in remaining whites.', 'Pour into buttered, cheese-dusted ramekins.', 'Run thumb around rim for classic top hat rise.', 'Bake at 190°C for 12-14 minutes. Do not open oven!']
+    }
+};
+
+function openRecipeModal(recipeId) {
+    const recipe = recipeDatabase[recipeId];
+    if (!recipe) {
+        showNotification('Recipe details coming soon!');
+        return;
+    }
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'recipe-modal-overlay';
+    overlay.innerHTML = `
+        <div class="recipe-modal">
+            <div class="recipe-modal-img" style="background-image: url('${recipe.image}')">
+                <button class="recipe-modal-close" aria-label="Close recipe detail">&times;</button>
+            </div>
+            <div class="recipe-modal-body">
+                <h2>${recipe.title}</h2>
+                <div class="recipe-modal-meta">
+                    <span><i class="fas fa-clock"></i> ${recipe.time}</span>
+                    <span><i class="fas fa-utensils"></i> Serves ${recipe.servings}</span>
+                    <span><i class="fas fa-fire"></i> ${recipe.calories}</span>
+                    <span><i class="fas fa-star" style="color: var(--warning);"></i> ${recipe.rating}</span>
+                </div>
+                <p class="recipe-modal-desc">${recipe.desc}</p>
+                <div class="recipe-modal-section">
+                    <h3><i class="fas fa-carrot"></i> Ingredients</h3>
+                    <div class="recipe-modal-ingredients">
+                        ${recipe.ingredients.map(ing => `<div class="recipe-modal-ingredient" onclick="this.classList.toggle('checked')"><i class="fas fa-check-circle"></i> ${ing}</div>`).join('')}
+                    </div>
+                </div>
+                <div class="recipe-modal-section">
+                    <h3><i class="fas fa-list-ol"></i> Instructions</h3>
+                    <ol class="recipe-modal-steps">
+                        ${recipe.steps.map(step => `<li class="recipe-modal-step">${step}</li>`).join('')}
+                    </ol>
+                </div>
+                <div class="recipe-modal-actions">
+                    <button class="btn btn-primary" onclick="showNotification('Recipe saved!')">
+                        <i class="fas fa-bookmark"></i> Save Recipe
+                    </button>
+                    <button class="btn" onclick="showNotification('Link copied!')">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+    
+    // Animate in
+    requestAnimationFrame(() => overlay.classList.add('active'));
+    
+    // Close handlers
+    overlay.querySelector('.recipe-modal-close').addEventListener('click', () => closeRecipeModal(overlay));
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeRecipeModal(overlay);
+    });
+    document.addEventListener('keydown', function handler(e) {
+        if (e.key === 'Escape') {
+            closeRecipeModal(overlay);
+            document.removeEventListener('keydown', handler);
+        }
+    });
+}
+
+function closeRecipeModal(overlay) {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => overlay.remove(), 300);
+}
+
+// Wire up View Recipe buttons to open modal
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.view-recipe');
+    if (btn) {
+        const recipeId = btn.dataset.recipe;
+        openRecipeModal(recipeId);
+    }
+});
+
+// ---- Search Dropdown ----
+function setupSearchDropdown() {
+    const searchInput = document.getElementById('searchInput');
+    const dropdown = document.getElementById('searchDropdown');
+    if (!searchInput || !dropdown) return;
+    
+    const allRecipes = Object.entries(recipeDatabase).map(([id, r]) => ({
+        id,
+        title: r.title,
+        time: r.time,
+        rating: r.rating,
+        image: r.image
+    }));
+    
+    searchInput.addEventListener('input', throttle(() => {
+        const q = searchInput.value.trim().toLowerCase();
+        if (q.length < 2) {
+            dropdown.classList.remove('active');
+            dropdown.innerHTML = '';
+            // Also filter recipe cards
+            filterRecipes({ target: searchInput });
+            return;
+        }
+        
+        const results = allRecipes.filter(r => r.title.toLowerCase().includes(q));
+        
+        if (results.length === 0) {
+            dropdown.innerHTML = '<div class="search-empty">No recipes found for "' + searchInput.value.trim() + '"</div>';
+        } else {
+            dropdown.innerHTML = results.map(r => `
+                <div class="search-result-item" data-recipe-id="${r.id}">
+                    <div class="search-result-img" style="background-image: url('${r.image}')"></div>
+                    <div class="search-result-info">
+                        <div class="search-result-title">${r.title}</div>
+                        <div class="search-result-meta"><i class="fas fa-clock"></i> ${r.time} &bull; <i class="fas fa-star" style="color: var(--warning);"></i> ${r.rating}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        dropdown.classList.add('active');
+        
+        // Click handlers for results
+        dropdown.querySelectorAll('.search-result-item').forEach(item => {
+            item.addEventListener('click', () => {
+                openRecipeModal(item.dataset.recipeId);
+                dropdown.classList.remove('active');
+                searchInput.value = '';
+            });
+        });
+    }, 200));
+    
+    // Close dropdown on outside click
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-bar')) {
+            dropdown.classList.remove('active');
+        }
+    });
+    
+    // Also filter recipe cards as before
+    searchInput.addEventListener('input', throttle(() => filterRecipes({ target: searchInput }), 150));
+}
+
+// ---- Like Toggle ----
+function toggleLike(element) {
+    const icon = element.querySelector('i');
+    const countEl = element.closest('.feed-post')?.querySelector('.like-count');
+    if (!countEl) return;
+    let count = parseInt(countEl.textContent) || 0;
+    
+    if (element.classList.contains('liked')) {
+        element.classList.remove('liked');
+        icon.className = 'far fa-heart';
+        countEl.textContent = count - 1;
+    } else {
+        element.classList.add('liked');
+        icon.className = 'fas fa-heart';
+        countEl.textContent = count + 1;
+    }
+}
+
+// Make toggleLike globally accessible
+window.toggleLike = toggleLike;
+window.openRecipeModal = openRecipeModal;
 
 initApp();
 registerServiceWorker();
