@@ -1,0 +1,20 @@
+{
+  "name": "home-made-recipes",
+  "private": true,
+  "version": "1.0.0",
+  "description": "HomeMade Recipe — Nigerian-rooted cooking community",
+  "type": "module",
+  "scripts": {
+    "check:js": "node scripts/check-module-js.mjs",
+    "serve": "npx serve .",
+    "deploy:production": "firebase deploy --only hosting,firestore --project production",
+    "deploy:staging": "firebase deploy --only hosting,firestore --project staging",
+    "deploy:rules": "firebase deploy --only firestore:rules --project production",
+    "deploy:storage": "firebase deploy --only storage --project production",
+    "emulators": "firebase emulators:start --only auth,firestore",
+    "emulators:full": "firebase emulators:start --only auth,firestore,storage"
+  },
+  "devDependencies": {
+    "firebase-tools": "^13.0.0"
+  }
+}

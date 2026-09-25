@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "home-made-recipe-c857f",
+    "production": "home-made-recipe-c857f",
+    "staging": "home-made-recipe-c857f-staging"
+  },
+  "targets": {}
+}
