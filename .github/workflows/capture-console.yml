@@ -5,6 +5,9 @@ on:
   push:
     paths:
       - 'scripts/capture-console.js'
+      - '.github/workflows/capture-console.yml'
+      - 'package.json'
+      - 'package-lock.json'
 
 jobs:
   capture:
@@ -16,10 +19,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
 
       - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+        # puppeteer-core@25 requires Node >=22.12. --ignore-scripts skips native builds
+        # (re2/protobufjs, pulled in by firebase-tools) that this job does not need.
+        run: npm ci --no-audit --no-fund --ignore-scripts
 
       - name: Run capture script
         run: node scripts/capture-console.js https://home-made-recipe-c857f.web.app > console-output.txt 2>&1
