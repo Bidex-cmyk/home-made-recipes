@@ -5,7 +5,11 @@
   "description": "HomeMade Recipe — Nigerian-rooted cooking community",
   "type": "module",
   "scripts": {
+    "check": "npm run check:js",
     "check:js": "node scripts/check-module-js.mjs",
+    "capture:console": "node scripts/capture-console.js",
+    "smoke:staging": "node scripts/p0-smoke-test.mjs",
+    "repro:sw": "node scripts/p0-sw-repro.mjs",
     "serve": "npx serve .",
     "deploy:production": "firebase deploy --only hosting,firestore --project production",
     "deploy:staging": "firebase deploy --only hosting,firestore --project staging",
@@ -15,6 +19,7 @@
     "emulators:full": "firebase emulators:start --only auth,firestore,storage"
   },
   "devDependencies": {
-    "firebase-tools": "^13.0.0"
+    "firebase-tools": "^13.0.0",
+    "puppeteer-core": "^25.12.0"
   }
 }

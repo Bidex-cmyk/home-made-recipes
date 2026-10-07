@@ -1,0 +1,20 @@
+# Never serve repo/config files from the public site — mirrors firebase.json "ignore".
+firebase.json
+firestore.rules
+storage.rules
+package.json
+package-lock.json
+DEPLOYMENT.md
+QA_ACCOUNTS.md
+README.md
+.firebaserc
+.env.example
+.env.local
+.gitignore
+.vercelignore
+
+# Tooling / CI must not be published
+scripts/
+.github/
+node_modules/
+.vercel/

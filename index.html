@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B3%3C/text%3E%3C/svg%3E">
     <meta name="theme-color" content="#ff6b6b">
     <meta name="description" content="Home Made Recipe - A premium social cooking platform with international recipes, cooking videos, and community features.">
     <!-- Firebase SDKs -->
@@ -1183,6 +1184,7 @@
         .recipe-img {
             height: 200px;
             width: 100%;
+            background-color: var(--surface-3);
             background-size: cover;
             background-position: center;
             position: relative;
@@ -1388,6 +1390,7 @@
         
         .detail-img {
             height: 300px;
+            background-color: var(--surface-3);
             background-size: cover;
             background-position: center;
             border-radius: var(--radius);
@@ -2268,7 +2271,7 @@
 
         .btn-premium:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow);
         }
 
         /* User Profile Avatar */
@@ -4308,7 +4311,7 @@
                     </button>
                 </div>
                 
-                <div class="detail-img" style="background-image: url('https://images.unsplash.com/photo-1573140266316-47a4d11a8f9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');"></div>
+                <div class="detail-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mushroom_Risotto_%284789415965%29.jpg/1280px-Mushroom_Risotto_%284789415965%29.jpg');"></div>
                 
                 <div class="ingredients-section">
                     <h3 class="section-subtitle">Ingredients</h3>
@@ -4467,7 +4470,7 @@
             <div class="recipes-grid">
                 <!-- Premium Recipe 1 -->
                 <div class="recipe-card premium" data-recipe="thai-curry">
-                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1593819559779-4f033560e489?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
+                    <div class="recipe-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Thai_Green_Curry_with_Rice.jpg/1280px-Thai_Green_Curry_with_Rice.jpg');">
                         <div class="premium-lock">
                             <i class="fas fa-lock"></i>
                         </div>
@@ -4492,7 +4495,7 @@
                 
                 <!-- Premium Recipe 2 -->
                 <div class="recipe-card premium" data-recipe="ramen">
-                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1555939316-7f632942d2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
+                    <div class="recipe-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Japanese_Ramen_Noodle_Soup%2C_Bangkok%2C_Thailand.jpg/1280px-Japanese_Ramen_Noodle_Soup%2C_Bangkok%2C_Thailand.jpg');">
                         <div class="premium-lock">
                             <i class="fas fa-lock"></i>
                         </div>
@@ -4517,7 +4520,7 @@
                 
                 <!-- Premium Recipe 3 -->
                 <div class="recipe-card premium" data-recipe="souffle">
-                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1565958011704-4a87de7997a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
+                    <div class="recipe-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/French_Cheese_Souffle_%284522555015%29.jpg/1280px-French_Cheese_Souffle_%284522555015%29.jpg');">
                         <div class="premium-lock">
                             <i class="fas fa-lock"></i>
                         </div>
@@ -4576,7 +4579,7 @@
                 
                 <!-- Recipe 2 -->
                 <div class="recipe-card" data-recipe="carbonara">
-                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1547592164-6f5f5f9a1880?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="recipe-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Espaguetis_carbonara.jpg/1280px-Espaguetis_carbonara.jpg');"></div>
                     <div class="recipe-content">
                         <h3 class="recipe-title">Classic Spaghetti Carbonara</h3>
                         <div class="recipe-meta">
@@ -4595,7 +4598,7 @@
                 
                 <!-- Recipe 3 -->
                 <div class="recipe-card" data-recipe="salmon">
-                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1563240670-a7c7fac1b771?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="recipe-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Grilled_salmon.jpg/1280px-Grilled_salmon.jpg');"></div>
                     <div class="recipe-content">
                         <h3 class="recipe-title">Grilled Salmon with Lemon Dill Sauce</h3>
                         <div class="recipe-meta">
@@ -4895,7 +4898,7 @@
                         </div>
                     </div>
                     <div class="recipe-card">
-                        <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1547592164-6f5f5f9a1880?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                        <div class="recipe-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Espaguetis_carbonara.jpg/1280px-Espaguetis_carbonara.jpg');"></div>
                         <div class="recipe-content">
                             <h3 class="recipe-title">Spaghetti Carbonara</h3>
                             <div class="recipe-meta"><span>3 weeks ago</span></div>
@@ -5161,6 +5164,7 @@
                 <p style="color: #666; font-size: 0.85rem; margin: 0;">&copy; 2026 Home Made Recipe. All rights reserved.</p>
                 <p style="color: #666; font-size: 0.85rem; margin: 0;">18+ content &bull; Premium unlocks advanced meal planning & exclusive courses</p>
             </div>
+            <p style="color: #666; font-size: 0.75rem; margin: 12px 0 16px; text-align: center;">Recipe photos from <a href="https://commons.wikimedia.org/" style="color: #8a8a8a;">Wikimedia Commons</a> (CC BY-SA) and <a href="https://unsplash.com/" style="color: #8a8a8a;">Unsplash</a>.</p>
         </div>
         <style>
             @media (max-width: 768px) {
@@ -5231,7 +5235,10 @@
 
     </style>
     </footer>
-    
+
+    <!-- Firebase config for non-Firebase hosts (Vercel/Netlify). Overridden by Hosting auto-config. -->
+    <script src="./firebase-config.js"></script>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
@@ -5952,7 +5959,7 @@ function setupEventListeners() {
             if (!recipeDatabase['risotto-featured']) {
                 recipeDatabase['risotto-featured'] = {
                     title: 'Creamy Mushroom Risotto', time: '45 mins', servings: '4', calories: '520 kcal', rating: '4.9', cuisine: 'Italian',
-                    image: 'https://images.unsplash.com/photo-1573140266316-47a4d11a8f9b?auto=format&fit=crop&w=1074&q=80',
+                    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mushroom_Risotto_%284789415965%29.jpg/1280px-Mushroom_Risotto_%284789415965%29.jpg',
                     desc: 'Creamy arborio rice with mushrooms and Parmesan — stir patiently for perfection.',
                     ingredients: ['1.5 cups Arborio rice','8 oz mushrooms, sliced','1 small onion, finely chopped','2 cloves garlic, minced','4 cups vegetable broth','1/2 cup dry white wine','1/2 cup grated Parmesan cheese','2 tbsp butter','2 tbsp olive oil','Salt and pepper to taste','Fresh parsley, chopped'],
                     steps: ['Heat vegetable broth and keep warm over low heat.','Sauté onions 3-4 mins till translucent.','Add mushrooms, cook 5-7 mins, add garlic 1 min.','Toast rice 1-2 mins till edges translucent.','Pour wine, stir till absorbed.','Add broth one ladle at a time, stirring constantly, 18-20 mins.','Remove from heat, stir in butter and Parmesan.','Rest 2 mins, garnish with parsley.']
@@ -6206,7 +6213,7 @@ function setupEventListeners() {
             if (!recipeDatabase['risotto-featured']) {
                 recipeDatabase['risotto-featured'] = {
                     title: 'Creamy Mushroom Risotto', time: '45 mins', servings: '4', calories: '520 kcal', rating: '4.9', cuisine: 'Italian',
-                    image: 'https://images.unsplash.com/photo-1573140266316-47a4d11a8f9b?auto=format&fit=crop&w=1074&q=80',
+                    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mushroom_Risotto_%284789415965%29.jpg/1280px-Mushroom_Risotto_%284789415965%29.jpg',
                     desc: 'Creamy arborio rice with mushrooms and Parmesan — stir patiently for perfection.',
                     ingredients: ['1.5 cups Arborio rice','8 oz mushrooms, sliced','1 small onion, finely chopped','2 cloves garlic, minced','4 cups vegetable broth','1/2 cup dry white wine','1/2 cup grated Parmesan cheese','2 tbsp butter','2 tbsp olive oil','Salt and pepper to taste','Fresh parsley, chopped'],
                     steps: ['Heat vegetable broth and keep warm over low heat.','Sauté onions 3-4 mins till translucent.','Add mushrooms, cook 5-7 mins, add garlic 1 min.','Toast rice 1-2 mins till edges translucent.','Pour wine, stir till absorbed.','Add broth one ladle at a time, stirring constantly, 18-20 mins.','Remove from heat, stir in butter and Parmesan.','Rest 2 mins, garnish with parsley.']
@@ -6977,7 +6984,7 @@ function updateProfileContent(tabName) {
                     </div>
                 </div>
                 <div class="recipe-card">
-                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1547592164-6f5f5f9a1880?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="recipe-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Espaguetis_carbonara.jpg/1280px-Espaguetis_carbonara.jpg');"></div>
                     <div class="recipe-content">
                         <h3 class="recipe-title">Spaghetti Carbonara</h3>
                         <div class="recipe-meta"><span>3 weeks ago</span></div>
@@ -8283,7 +8290,7 @@ const recipeDatabase = {
         servings: '4',
         calories: '580 kcal',
         rating: '4.9',
-        image: 'https://images.unsplash.com/photo-1547592164-6f5f5f9a1880?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Espaguetis_carbonara.jpg/1280px-Espaguetis_carbonara.jpg',
         desc: 'Authentic Italian carbonara with crispy pancetta, egg sauce, and plenty of Parmigiano-Reggiano cheese. No cream needed!',
         ingredients: ['400g spaghetti', '200g pancetta or guanciale', '4 egg yolks', '1 whole egg', '100g Pecorino Romano', '50g Parmigiano-Reggiano', 'Black pepper', 'Salt'],
         steps: ['Cook spaghetti in salted water until al dente.', 'Cut pancetta into small cubes and cook until crispy.', 'Whisk egg yolks, whole egg, and grated cheeses together.', 'Reserve 1 cup pasta water before draining.', 'Toss hot pasta with pancetta off heat.', 'Quickly pour egg mixture over pasta, tossing vigorously.', 'Add pasta water as needed for creamy consistency.', 'Season generously with black pepper and serve immediately.']
@@ -8294,7 +8301,7 @@ const recipeDatabase = {
         servings: '2',
         calories: '420 kcal',
         rating: '4.7',
-        image: 'https://images.unsplash.com/photo-1563240670-a7c7fac1b771?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Grilled_salmon.jpg/1280px-Grilled_salmon.jpg',
         desc: 'Perfectly grilled salmon fillets topped with a fresh lemon dill sauce, served with roasted asparagus.',
         ingredients: ['2 salmon fillets', '1 bunch fresh dill', '2 lemons', '2 tbsp butter', '1 tbsp olive oil', '1 bunch asparagus', 'Salt and pepper', '2 cloves garlic'],
         steps: ['Season salmon with salt, pepper, and olive oil.', 'Preheat grill or pan to medium-high heat.', 'Grill salmon skin-side down for 4-5 minutes.', 'Flip and cook another 3-4 minutes.', 'For sauce: melt butter, add lemon juice and chopped dill.', 'Toss asparagus with garlic and roast at 400°F.', 'Plate salmon over asparagus, drizzle with sauce.', 'Garnish with fresh dill and lemon wedges.']
@@ -8305,7 +8312,7 @@ const recipeDatabase = {
         servings: '4',
         calories: '480 kcal',
         rating: '4.9',
-        image: 'https://images.unsplash.com/photo-1593819559779-4f033560e489?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Thai_Green_Curry_with_Rice.jpg/1280px-Thai_Green_Curry_with_Rice.jpg',
         desc: 'Master the art of Thai curry paste from scratch with lemongrass, galangal, and kaffir lime leaves.',
         ingredients: ['400ml coconut milk', '3 tbsp green curry paste', '500g chicken breast', 'Thai basil', 'Fish sauce', 'Palm sugar', 'Kaffir lime leaves', 'Thai eggplant', 'Bamboo shoots'],
         steps: ['Fry curry paste in thick coconut cream until fragrant.', 'Add sliced chicken and cook until white.', 'Pour in remaining coconut milk.', 'Season with fish sauce and palm sugar.', 'Add eggplant and bamboo shoots.', 'Simmer for 15 minutes until vegetables are tender.', 'Tear in kaffir lime leaves and Thai basil.', 'Serve hot with jasmine rice.']
@@ -8316,7 +8323,7 @@ const recipeDatabase = {
         servings: '4',
         calories: '620 kcal',
         rating: '4.8',
-        image: 'https://images.unsplash.com/photo-1555939316-7f632942d2eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Japanese_Ramen_Noodle_Soup%2C_Bangkok%2C_Thailand.jpg/1280px-Japanese_Ramen_Noodle_Soup%2C_Bangkok%2C_Thailand.jpg',
         desc: 'Learn the 18-hour process for authentic pork bone broth, handmade noodles, and perfect chashu pork.',
         ingredients: ['2kg pork bones', '1kg pork belly', 'Fresh ramen noodles', 'Soy sauce', 'Mirin', 'Soft-boiled eggs', 'Green onions', 'Nori sheets', 'Garlic', 'Ginger'],
         steps: ['Blanch pork bones, then simmer for 12-18 hours.', 'Braise pork belly in soy sauce, mirin, and sake.', 'Strain broth until milky and creamy.', 'Season broth with tare (soy-based seasoning).', 'Cook fresh ramen noodles until just done.', 'Slice chashu pork.', 'Assemble: noodles, broth, chashu, egg, toppings.', 'Serve immediately while piping hot.']
@@ -8329,7 +8336,7 @@ const recipeDatabase = {
         rating: '4.7',
         cuisine: 'French',
         category: 'premium',
-        image: 'https://images.unsplash.com/photo-1565958011704-4a87de7997a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/French_Cheese_Souffle_%284522555015%29.jpg/1280px-French_Cheese_Souffle_%284522555015%29.jpg',
         desc: 'Perfect the delicate art of soufflés with chef techniques for stable egg whites and oven temperature control.',
         ingredients: ['4 egg whites', '3 egg yolks', '50g butter', '50g flour', '200ml milk', '100g Gruyère cheese', 'Salt', 'Pinch of cream of tartar', 'Nutmeg'],
         steps: ['Make béchamel: melt butter, whisk in flour, add milk.', 'Remove from heat, whisk in egg yolks and cheese.', 'Whip egg whites with cream of tartar to stiff peaks.', 'Fold 1/3 whites into base to lighten.', 'Gently fold in remaining whites.', 'Pour into buttered, cheese-dusted ramekins.', 'Run thumb around rim for classic top hat rise.', 'Bake at 190°C for 12-14 minutes. Do not open oven!']

@@ -19,13 +19,13 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install puppeteer --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Run capture script
-        run: |
-          node scripts/capture-console.js https://home-made-recipe-c857f.web.app > console-output.txt 2>&1 || true
+        run: node scripts/capture-console.js https://home-made-recipe-c857f.web.app > console-output.txt 2>&1
 
       - name: Upload logs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: console-logs
